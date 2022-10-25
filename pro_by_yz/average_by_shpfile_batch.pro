@@ -1,7 +1,7 @@
 pro average_by_shpfile_batch
-  input_directory='R:\IDL\resource\data\chapter_2\chapter_0/';tiff文件所在的输入路径
-  shp_directory='R:\IDL\resource\data\chapter_2\chapter_0\shp_out\';用shp_polygon_extract代码提取出的分区县shp文件输入路径
-  output_directory='R:\IDL\resource\data\chapter_2\chapter_0\stat_result\';结果输出路径
+  input_directory='O:/coarse_data/GMM/chapter_2/';tiff文件所在的输入路径
+  shp_directory='O:/coarse_data/GMM/chapter_2/shp_out/';用shp_polygon_extract代码提取出的分区县shp文件输入路径
+  output_directory='O:/coarse_data/GMM/chapter_2/stat_result/';结果输出路径
   output_csv=output_directory+'average_result.csv';统计结果csv文件名
   if ~(file_test(output_directory,/directory)) then file_mkdir,output_directory
 
@@ -22,21 +22,17 @@ pro average_by_shpfile_batch
     
     for shp_file_i=0,shp_file_n-1 do begin
       subset_name=output_directory+file_basename(shp_file_list[shp_file_i],'.shp')+'_'+$
-        file_basename(tiff_file_list[tiff_file_i],'.tiff')
-      subset_by_shp,tiff_file_list[tiff_file_i],shp_file_list[shp_file_i],subset_name;裁剪
-      ;均值处理
+        file_basename(tiff_file_list[tiff_file_i])
+      subset_by_shp,tiff_file_list[tiff_file_i],shp_file_list[shp_file_i],subset_name
       data=read_tiff(subset_name)
-      data=data*data/data;去除0值
+      data=data*data/data
       data_mean=mean(data,/nan)
-      average_record[tiff_file_i,shp_file_i]=data_mean;算均值
-      
-      
-      
+      average_record[tiff_file_i,shp_file_i]=data_mean
     endfor
   endfor
 
   for shp_file_i=0,shp_file_n-1 do begin
-     printf,1,file_basename(shp_file_list[shp_file_i],'.shp'),average_record[*,shp_file_i],format=format_str
+    printf,1,file_basename(shp_file_list[shp_file_i],'.shp'),average_record[*,shp_file_i],format=format_str
   endfor
   free_lun,1
 end
