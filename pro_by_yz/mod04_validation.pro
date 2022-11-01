@@ -11,6 +11,9 @@ pro mod04_validation
   aeronet_doyf_data=aeronet_data.(doy_pos)
   aeronet_aod_data=aeronet_data.(aod_pos)
   aeronet_ae_data=aeronet_data.(ae_pos)
+  aeronet_aod_data=aeronet_aod_data*((500.0/550.0)^aeronet_ae_data)
+  gr_result=list()
+  st_result=list()
   
   mod04_list=file_search(mod04_dir+'*.hdf',count=file_n)
   for file_i=0,file_n-1 do begin
@@ -32,6 +35,14 @@ pro mod04_validation
     target_aod=aod_data_conv[pos[0]]
     if (distance[pos[0]] le 0.1) and (target_aod gt 0.0) then begin
       print,aeornet_aod_mean,target_aod
+      gr_result.add,aeornet_aod_mean
+      st_result.add,target_aod
     endif
   endfor
+  x=gr_result.toarray()
+  y=st_result.toarray()
+  r=correlate(x,y)
+  
+  scplot=scatterplot(x,y,xrange=[0,2],yrange=[0,2],symbol='S',sym_size=2,sym_fill_color='DODGER BLUE',$
+    sym_filled=1,xtitle='AERONET AOD (550 nm)',ytitle='Satellite AOD (550 nm)',dimension=[800,800])
 end
