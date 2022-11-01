@@ -69,6 +69,15 @@ pro cor
   
   
   myplot=SCATTERPLOT(x,y,XRANGE=[0,1.5],YRANGE=[0,1.5],SYMBOL=23,SYM_SIZE=2$
-    ,SYM_FILL_COLOR='CORAL',SYM_FILLED=1,TITLE='biubiubibu',xtitle='AERONET AOD(550nm)',ytitle='Satellite AOD(550nm)',DIMENSIONS=[800,800])
+    ,SYM_FILL_COLOR='CORAL',SYM_FILLED=1,TITLE='biubiubibu',$
+    xtitle='AERONET AOD(550nm)',ytitle='Satellite AOD(550nm)',DIMENSIONS=[800,800],$
+    name='point'+STRTRIM(STRING(N_ELEMENTS(x)),2)+STRING(r,FORMAT='(f0.3)'))
+  a=[0,2]
+  myline=plot(a,a,/overplot,thick=3)
+  err11=plot(a,a+0.05+0.15*a,/overplot,thick=3,linestyle=2,color='red',name='error line')
+  err11=plot(a,a-0.05-0.15*a,/overplot,thick=3,linestyle=2,color='red',font_name='times',font_size=18)
+  lg=LEGEND(TARGET=[myline,myplot,err11],POSITION=[0.88940103,0.26660938])
+;  myplot.Save,"R:\IDL\resource\MYD04_Aeronet_Compare\mm.png",/BORDER
+;  myplot.Close
   PRINT,r
 end
