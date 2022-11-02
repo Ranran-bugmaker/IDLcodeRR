@@ -77,9 +77,9 @@ pro Drafts
  
  
  
-  for ent_i=0,ent_n-1 do begin
-    ent_result=shpobj.GetEntity(ent_i)
-    att_result=shpobj.GetAttributes(ent_i)
+;  for ent_i=0,ent_n-1 do begin
+    ent_result=Enty;shpobj.GetEntity(ent_i)
+    att_result=Attr;shpobj.GetAttributes(ent_i)
 
 
     ;命名输入输出
@@ -87,7 +87,7 @@ pro Drafts
     out_prj=output_directory+att_result.(out_field_position1)+'_'+att_result.(out_field_position2)+'.prj'
 
     ;写入shp基础文件
-    out_obj=obj_new('IDLffShape',out_name,/update,entity_type=5)
+    out_obj=obj_new('IDLffShape',out_name[0],/update,entity_type=5)
     out_obj.PutEntity,ent_result
     shpobj.DestroyEntity,ent_result
 
@@ -100,8 +100,12 @@ pro Drafts
 
     ;添加表信息
     out_attr=out_obj->GetAttributes(/attribute_structure)
-    out_attr[0]=att_result[0]
-    out_obj.SetAttributes,0,out_attr
+    for index = 0L, N_ELEMENTS(att_result)-1 do begin
+      out_attr.add=att_result[index]
+    endfor
+
+    
+    out_obj.c,0,out_attr
 
     ;释放对象
     out_obj.close
@@ -110,6 +114,6 @@ pro Drafts
     ;复制投影信息
     file_copy,prjfile,out_prj
 
-  ENDFOR
+;  ENDFOR
 
 end

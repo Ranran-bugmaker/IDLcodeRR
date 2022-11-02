@@ -1,7 +1,7 @@
 pro average_by_shpfile_batch
-  input_directory='O:/coarse_data/GMM/chapter_2/';tiff文件所在的输入路径
-  shp_directory='O:/coarse_data/GMM/chapter_2/shp_out/';用shp_polygon_extract代码提取出的分区县shp文件输入路径
-  output_directory='O:/coarse_data/GMM/chapter_2/stat_result/';结果输出路径
+  input_directory='R:\IDL\resource\data\chapter_2\chapter_0\';tiff文件所在的输入路径
+  shp_directory='R:\IDL\resource\data\chapter_2\chapter_0\shp_out\';用shp_polygon_extract代码提取出的分区县shp文件输入路径
+  output_directory='R:\IDL\resource\data\chapter_2\chapter_0\stat_result\';结果输出路径
   output_csv=output_directory+'average_result.csv';统计结果csv文件名
   if ~(file_test(output_directory,/directory)) then file_mkdir,output_directory
 

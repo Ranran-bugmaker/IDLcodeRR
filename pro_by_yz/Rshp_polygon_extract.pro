@@ -1,11 +1,11 @@
 pro Rshp_polygon_extract
-shpfile='R:\IDL\resource\data\chapter_2\chapter_0/sichuan_county_wgs84.shp'
-prjfile='R:\IDL\resource\data\chapter_2\chapter_0/sichuan_county_wgs84.prj'
+shpfile='R:\IDL\resource\data\chapter_2\chapter_0\sichuan_county_wgs84.shp'
+prjfile='R:\IDL\resource\data\chapter_2\chapter_0\sichuan_county_wgs84.prj'
 output_directory='R:\IDL\resource\data\chapter_2\chapter_0/shp_out/'
 out_field_position1=6
 out_field_position2=2
 dir_test=file_test(output_directory,/directory)
-if dir_test eq 0 then begin
+if dir_test eq 0 then BEGIN
   file_mkdir,output_directory
 endif
 
