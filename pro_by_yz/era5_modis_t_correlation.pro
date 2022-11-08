@@ -1,0 +1,77 @@
+pro era5_modis_t_correlation
+  print,'------------建模部分------------'
+  era5_file= 'O:\coarse_data\GMM\adaptor.mars.internal-1666516627.146223-388-2-51421d36-d9f6-411c-ad25-aa461e3ad572.nc'
+  modis_file='O:\coarse_data\GMM\MOD11C3.A2020001.061.2021005132339.hdf'
+  t2m_data=ncdf_data_get(era5_file,'t2m')
+  ;对MODIS数据预处理
+  lst_day=hdf4_data_get(modis_file,'LST_Day_CMG')
+  lst_night=hdf4_data_get(modis_file,'LST_Night_CMG')
+  lst_day_conv=float(lst_day)*0.02
+  lst_night_conv=float(lst_night)*0.02
+  lst_avr=(lst_day_conv+lst_night_conv)/((lst_day_conv gt 0)+(lst_night_conv gt 0))
+  lst_avr_congrid=congrid(lst_avr,1440,721)
+  ;对ERA-5数据预处理
+  sf=ncdf_attdata_get(era5_file,'t2m','scale_factor')
+  ao=ncdf_attdata_get(era5_file,'t2m','add_offset')
+  t2m_data_conv=t2m_data*sf+ao
+  t2m_data_final=dblarr(1440,721)
+  t2m_data_final[0:719,*]=t2m_data_conv[720:1439,*,0]
+  t2m_data_final[720:1439,*]=t2m_data_conv[0:719,*,0]
+  ;像元匹配
+  valid_pos=where(~finite(lst_avr_congrid,/nan))
+  lst_valid=lst_avr_congrid[valid_pos]
+  t2m_valid=t2m_data_final[valid_pos]
+  ;相关分析与回归分析
+  r=correlate(lst_valid,t2m_valid)
+  print,'相关系数为：'+string(r,format='(F0.3)')
+  fit=linfit(lst_valid,t2m_valid)
+  print,'回归系数为：'+string(fit,format='(2(F0.3,:,", "))')
+  
+  print,'------------估算部分------------'
+  ;二月MODIS数据预处理
+  modis_file_new='O:\coarse_data\GMM\MOD11C3.A2020032.061.2021006182041.hdf'
+  lst_day_new=hdf4_data_get(modis_file_new,'LST_Day_CMG')
+  lst_night_new=hdf4_data_get(modis_file_new,'LST_Night_CMG')
+  lst_day_new_conv=float(lst_day_new)*0.02
+  lst_night_new_conv=float(lst_night_new)*0.02
+  lst_avr_new=(lst_day_new_conv+lst_night_new_conv)/((lst_day_new_conv gt 0)+(lst_night_new_conv gt 0))
+  lst_avr_new_congrid=congrid(lst_avr_new,1440,721)
+  t2m_prediction=fit[1]*lst_avr_new_congrid+fit[0]
+  ;二月ERA-5数据预处理
+  t2m_data_new_final=dblarr(1440,721)
+  t2m_data_new_final[0:719,*]=t2m_data_conv[720:1439,*,1]
+  t2m_data_new_final[720:1439,*]=t2m_data_conv[0:719,*,1]
+  ;结果存储数组初始化
+  t2m_prediction_result=dblarr(1440,721)
+  t2m_prediction_fine=dblarr(7200,3600)
+  t2m_era5_result=dblarr(1440,721)
+  ;估算结果误差评价与输出（0.25°分辨率）
+  valid_pos_new=where(~finite(t2m_prediction,/nan),valid_n)
+  t2m_prediction_valid=t2m_prediction[valid_pos_new]
+  t2m_valid_new=t2m_data_new_final[valid_pos_new]
+  t2m_prediction_result[valid_pos_new]=t2m_prediction[valid_pos_new]
+  t2m_era5_result[valid_pos_new]=t2m_data_new_final[valid_pos_new]
+  t2m_dif=t2m_prediction_result-t2m_era5_result
+  r_square=1.0-(total((t2m_prediction_valid-t2m_valid_new)^2.0)/total((t2m_valid_new-mean(t2m_valid_new))^2.0))
+  print,'决定系数为：'+string(r_square,format='(F0.3)')
+  print,'平均绝对误差为：'+string(total(abs(t2m_prediction_valid-t2m_valid_new))/valid_n,format='(F0.3)')
+  geo_info={$
+    MODELPIXELSCALETAG:[0.25,0.25,0.0],$
+    MODELTIEPOINTTAG:[0.0,0.0,0.0,-180.0,90.0,0.0],$
+    GTMODELTYPEGEOKEY:2,$
+    GTRASTERTYPEGEOKEY:1,$
+    GEOGRAPHICTYPEGEOKEY:4326,$
+    GEOGANGULARUNITSGEOKEY:9102}
+  write_tiff,'O:\coarse_data\GMM\2020feb_t2m_dif_all.tiff',t2m_dif,/float,geotiff=geo_info
+  ;估算结果输出（0.05°分辨率）
+  valid_pos_fine=where(~finite(lst_avr_new,/nan),valid_n)
+  t2m_prediction_fine[valid_pos_fine]=fit[1]*lst_avr_new[valid_pos_fine]+fit[0]
+  geo_info_fine={$
+    MODELPIXELSCALETAG:[0.05,0.05,0.0],$
+    MODELTIEPOINTTAG:[0.0,0.0,0.0,-180.0,90.0,0.0],$
+    GTMODELTYPEGEOKEY:2,$
+    GTRASTERTYPEGEOKEY:1,$
+    GEOGRAPHICTYPEGEOKEY:4326,$
+    GEOGANGULARUNITSGEOKEY:9102}
+  write_tiff,'O:\coarse_data\GMM\2020feb_t2m_fine_all.tiff',t2m_prediction_fine,/float,geotiff=geo_info_fine
+end
