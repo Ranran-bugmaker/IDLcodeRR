@@ -2,8 +2,8 @@ pro mod04_validation
   extract_lon=116.40
   extract_lat=39.90
   doyf_threshold=30.0/1440.0
-  mod04_dir='O:\coarse_data\MYD04_Aeronet_Compare\'
-  aeronet_file= 'O:\coarse_data\MYD04_Aeronet_Compare\20180101_20181231_Beijing.lev20'
+  mod04_dir='R:\IDL\resource\MYD04_Aeronet_Compare\'
+  aeronet_file= 'R:\IDL\resource\20180101_20181231_Beijing.lev20'
   aeronet_data=read_csv(aeronet_file,n_table_header=6,header=var_name)
   doy_pos=where(var_name eq 'Day_of_Year(Fraction)')
   aod_pos=where(var_name eq 'AOD_500nm')
@@ -44,5 +44,16 @@ pro mod04_validation
   r=correlate(x,y)
   
   scplot=scatterplot(x,y,xrange=[0,2],yrange=[0,2],symbol='S',sym_size=2,sym_fill_color='DODGER BLUE',$
-    sym_filled=1,xtitle='AERONET AOD (550 nm)',ytitle='Satellite AOD (550 nm)',dimension=[800,800])
+    sym_filled=1,xtitle='AERONET AOD (550 nm)',ytitle='Satellite AOD (550 nm)',dimension=[800,800],$
+    name='N='+strtrim(string(n_elements(x)),2)+', r='+string(r,format='(F0.3)'))
+  sdx=[0,2]
+  sdy=[0,2]
+  sdline=plot(sdx,sdy,/overplot,thick=3,name='1:1 line')
+  ery1=sdx+0.05+0.15*sdx
+  erline1=plot(sdx,ery1,/overplot,thick=3,linestyle=2,color='red',name='error line')
+  ery2=sdx-0.05-0.15*sdx
+  erline2=plot(sdx,ery2,/overplot,thick=3,linestyle=2,color='red',font_name='times',font_size=18)
+  lg=legend(target=[scplot,sdline,erline1],/data,position=[1.7,0.7],font_name='times',font_size=18)
+;  scplot.save,'O:\coarse_data\MYD04_Aeronet_Compare\validation.png',/border
+;  scplot.close
 end
