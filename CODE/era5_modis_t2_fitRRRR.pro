@@ -8,6 +8,8 @@ pro era5_modis_t2_fitRRRR
   ;输出文件设置
   output_dif_file='R:\IDL\resource\03\2020feb_t2m_dif_type.tiff'
   output_result_file='R:\IDL\resource\03\2020feb_t2m_fine_type.tiff'
+  output_result_csv='R:\IDL\resource\03\res.csv'
+  openw,1,output_result_csv;
   ;对MODIS数据预处理
   lst_day=hdf4_data_get(modis_file,'LST_Day_CMG')
   lst_night=hdf4_data_get(modis_file,'LST_Night_CMG')
@@ -56,24 +58,26 @@ pro era5_modis_t2_fitRRRR
   ;
   prediction=FLTARR(1440,721)
   prediction_fine=FLTARR(7200,3600)
-  diff=t2m_data_final
+  diff=FLTARR(1440,721)
   err_acc=0
   n_acc=0
+  PRINTF,1,'type,'+'r,'+'fit  coef:A,fit  coef:B,'+'mae'
   for lc_i = 0L,16 do begin
     valid_pos=where(~FINITE(lst_avr_congrid,/NAN)and(lc_data_con  eq  lc_i))
     lst_avr_valid=lst_avr_congrid[valid_pos]
     t2m_valid=t2m_data_final[valid_pos]
     r=CORRELATE(lst_avr_valid,t2m_valid)
-    PRINT,'type'+STRTRIM(STRING(lc_i))
-    print,'r='+string(r,FORMAT='(f0.3)')
+;    PRINTF,1,
+;    printF,1,
     fit=LINFIT(lst_avr_valid,t2m_valid)
-    print,'fit  coef:'+string(fit,FORMAT='(f0.3)')
-    valid_pos_n=where(~FINITE(lst_avr_congrid,/NAN)and(lc_data_con  eq  lc_i),valid_n)
+;    printF,1,
+    valid_pos_n=where(~FINITE(lst_avr_congrid_n,/NAN)and(lc_data_con  eq  lc_i),valid_n)
     prediction[valid_pos_n]=fit[1]*lst_avr_congrid_n[valid_pos_n]+fit[0]
     oringe=t2m_data_final_n[valid_pos_n]
     diff[valid_pos_n]=prediction[valid_pos_n]-oringe
-    mae=TOTAL(abs(oringe-prediction[valid_pos_n]))/valid_n
-    PRINT,'mae'+STRING(mae,FORMAT='(f0.3)')
+    mae=total(abs(oringe-prediction[valid_pos_n]),/NAN)/valid_n
+    PRINTF,1,STRTRIM(STRING(lc_i))+string(r,FORMAT='(","  , f0.3  , ",")')$
+      +string(fit,format='(2(F0.3,  : , ","))')+STRING(mae,FORMAT='(","  , f0.3)')
     err_acc+=TOTAL(abs(oringe-prediction[valid_pos_n]))
     n_acc+=valid_n
     ;
@@ -81,6 +85,9 @@ pro era5_modis_t2_fitRRRR
     prediction_fine[pos_fine]=fit[1]*lst_avr[pos_fine]+fit[0]
   endfor
   ;
+  PRINTF,1,'MAE_acc: '+string(err_acc*1.0/n_acc,format='(F0.3)')
   WRITE_TIFF,output_dif_file,diff,/FLOAT,GEOTIFF=geo_info
   WRITE_TIFF,output_result_file,prediction_fine,/FLOAT,GEOTIFF=geo_info_fine
+  FREE_LUN,1
+  PRINT,"over"
 end

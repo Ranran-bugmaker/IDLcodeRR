@@ -1,13 +1,13 @@
 pro era5_modis_t2_fit
   ;输入文件设置
-  era5_file= 'O:\coarse_data\GMM\adaptor.mars.internal-1666516627.146223-388-2-51421d36-d9f6-411c-ad25-aa461e3ad572.nc'
-  modis_file='O:\coarse_data\GMM\MOD11C3.A2020001.061.2021005132339.hdf'
-  landcover_file='O:\coarse_data\GMM\MCD12C1.A2020001.LC.tiff'
-  modis_file_new='O:\coarse_data\GMM\MOD11C3.A2020032.061.2021006182041.hdf'
+  era5_file= 'R:\IDL\resource\03\adaptor.mars.internal-1666516627.146223-388-2-51421d36-d9f6-411c-ad25-aa461e3ad572.nc'
+  modis_file='R:\IDL\resource\03\MOD11C3.A2020001.061.2021005132339.hdf'
+  landcover_file='R:\IDL\resource\03\MCD12C1.A2020001.LC.tiff'
+  modis_file_new='R:\IDL\resource\03\MOD11C3.A2020032.061.2021006182041.hdf'
   t2m_data=ncdf_data_get(era5_file,'t2m')
   ;输出文件设置
-  output_dif_file='O:\coarse_data\GMM\2020feb_t2m_dif_type.tiff'
-  output_result_file='O:\coarse_data\GMM\2020feb_t2m_fine_type.tiff'
+  output_dif_file='R:\IDL\resource\03\2020feb_t2m_dif_type.tiff'
+  output_result_file='R:\IDL\resource\03\2020feb_t2m_fine_type.tiff'
   ;对MODIS数据预处理
   lst_day=hdf4_data_get(modis_file,'LST_Day_CMG')
   lst_night=hdf4_data_get(modis_file,'LST_Night_CMG')
