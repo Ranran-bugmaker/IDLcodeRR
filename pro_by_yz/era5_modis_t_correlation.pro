@@ -1,7 +1,7 @@
 pro era5_modis_t_correlation
   print,'------------建模部分------------'
-  era5_file= 'O:\coarse_data\GMM\adaptor.mars.internal-1666516627.146223-388-2-51421d36-d9f6-411c-ad25-aa461e3ad572.nc'
-  modis_file='O:\coarse_data\GMM\MOD11C3.A2020001.061.2021005132339.hdf'
+  era5_file= 'R:\IDL\resource\03\adaptor.mars.internal-1666516627.146223-388-2-51421d36-d9f6-411c-ad25-aa461e3ad572.nc'
+  modis_file='R:\IDL\resource\03\MOD11C3.A2020001.061.2021005132339.hdf'
   t2m_data=ncdf_data_get(era5_file,'t2m')
   ;对MODIS数据预处理
   lst_day=hdf4_data_get(modis_file,'LST_Day_CMG')
@@ -29,7 +29,7 @@ pro era5_modis_t_correlation
   
   print,'------------估算部分------------'
   ;二月MODIS数据预处理
-  modis_file_new='O:\coarse_data\GMM\MOD11C3.A2020032.061.2021006182041.hdf'
+  modis_file_new='R:\IDL\resource\03\MOD11C3.A2020032.061.2021006182041.hdf'
   lst_day_new=hdf4_data_get(modis_file_new,'LST_Day_CMG')
   lst_night_new=hdf4_data_get(modis_file_new,'LST_Night_CMG')
   lst_day_new_conv=float(lst_day_new)*0.02
@@ -62,7 +62,7 @@ pro era5_modis_t_correlation
     GTRASTERTYPEGEOKEY:1,$
     GEOGRAPHICTYPEGEOKEY:4326,$
     GEOGANGULARUNITSGEOKEY:9102}
-  write_tiff,'O:\coarse_data\GMM\2020feb_t2m_dif_all.tiff',t2m_dif,/float,geotiff=geo_info
+  write_tiff,'R:\IDL\resource\03\2020feb_t2m_dif_all.tiff',t2m_dif,/float,geotiff=geo_info
   ;估算结果输出（0.05°分辨率）
   valid_pos_fine=where(~finite(lst_avr_new,/nan),valid_n)
   t2m_prediction_fine[valid_pos_fine]=fit[1]*lst_avr_new[valid_pos_fine]+fit[0]
@@ -73,5 +73,5 @@ pro era5_modis_t_correlation
     GTRASTERTYPEGEOKEY:1,$
     GEOGRAPHICTYPEGEOKEY:4326,$
     GEOGANGULARUNITSGEOKEY:9102}
-  write_tiff,'O:\coarse_data\GMM\2020feb_t2m_fine_all.tiff',t2m_prediction_fine,/float,geotiff=geo_info_fine
+  write_tiff,'R:\IDL\resource\03\2020feb_t2m_fine_all.tiff',t2m_prediction_fine,/float,geotiff=geo_info_fine
 end
