@@ -1,0 +1,19 @@
+ENVI
+samples = 1000
+lines   = 1000
+bands   = 4
+header offset = 0
+file type = TIFF
+data type = 12
+interleave = bsq
+sensor type = Unknown
+byte order = 0
+read procedures = {idl_tiff_read_spatial, idl_tiff_read_spectral}
+map info = {UTM, 1.000, 1.000, 474982.964, 4431147.518, 6.0006412390e-001, 6.0001845550e-001, 13, North, WGS-84, units=Meters}
+wavelength units = Micrometers
+band names = {
+ BLUE, GREEN, RED, NIR}
+wavelength = {
+ 0.485000, 0.560000, 0.660000, 0.830000}
+fwhm = {
+ 0.065000, 0.100000, 0.065000, 0.110000}

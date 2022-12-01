@@ -1,0 +1,27 @@
+IDL算法
+	rubber.pro 图像出现橡皮筋效果
+	object_fivestar.pro 绘制五角星
+	canny_detect_demo.pro Canny 边缘检测
+	santasroute 航线模拟
+	test_imagesave 对图像拉框选择并设置输出文件大小和类型，自动分块处理，按钮效果很炫
+IDL可视化
+	Map_demos 地图可视化的7个源码
+	objectmeshdemo 复杂形状展示与纹理贴图
+	RevolutionIDL
+	rhtgrcamera 三维照相机角度
+	rKLing圣诞礼物  RonnKling圣诞节发布的小程序
+	snownado 暴风模拟
+	可视化Demo 5个气象中IDL可视化的小程序
+IDL功能例子
+	AnnotateDemo IDL构建的一个简单量算系统
+	test_colorSelect 颜色选取
+	双屏幕显示 双屏对比查看图像
+ENVI二次开发
+	ENVI启动
+	ENVI关闭 
+	大气校正
+	融合
+	镶嵌
+	裁剪	
+	监督分类+非监督分类
+	特征提取

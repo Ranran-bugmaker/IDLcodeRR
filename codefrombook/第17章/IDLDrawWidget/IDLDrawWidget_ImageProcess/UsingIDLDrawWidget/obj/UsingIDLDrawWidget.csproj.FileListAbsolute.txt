@@ -1,0 +1,13 @@
+D:\技术研究\IDL\代码\2011年3月25日IDLDrawWidget\UsingIDLDrawWidget\UsingIDLDrawWidget\bin\Debug\UsingIDLDrawWidget.exe
+D:\技术研究\IDL\代码\2011年3月25日IDLDrawWidget\UsingIDLDrawWidget\UsingIDLDrawWidget\bin\Debug\UsingIDLDrawWidget.pdb
+D:\技术研究\IDL\代码\2011年3月25日IDLDrawWidget\UsingIDLDrawWidget\UsingIDLDrawWidget\bin\Debug\Interop.IDLDRAWX3Lib.dll
+D:\技术研究\IDL\代码\2011年3月25日IDLDrawWidget\UsingIDLDrawWidget\UsingIDLDrawWidget\bin\Debug\AxInterop.IDLDRAWX3Lib.dll
+D:\技术研究\IDL\代码\2011年3月25日IDLDrawWidget\UsingIDLDrawWidget\UsingIDLDrawWidget\obj\Debug\ResolveAssemblyReference.cache
+D:\技术研究\IDL\代码\2011年3月25日IDLDrawWidget\UsingIDLDrawWidget\UsingIDLDrawWidget\obj\Debug\Interop.IDLDRAWX3Lib.dll
+D:\技术研究\IDL\代码\2011年3月25日IDLDrawWidget\UsingIDLDrawWidget\UsingIDLDrawWidget\obj\Debug\AxInterop.IDLDRAWX3Lib.dll
+D:\技术研究\IDL\代码\2011年3月25日IDLDrawWidget\UsingIDLDrawWidget\UsingIDLDrawWidget\obj\Debug\UsingIDLDrawWidget.csproj.ResolveComReference.cache
+D:\技术研究\IDL\代码\2011年3月25日IDLDrawWidget\UsingIDLDrawWidget\UsingIDLDrawWidget\obj\Debug\UsingIDLDrawWidget.Form1.resources
+D:\技术研究\IDL\代码\2011年3月25日IDLDrawWidget\UsingIDLDrawWidget\UsingIDLDrawWidget\obj\Debug\UsingIDLDrawWidget.Properties.Resources.resources
+D:\技术研究\IDL\代码\2011年3月25日IDLDrawWidget\UsingIDLDrawWidget\UsingIDLDrawWidget\obj\Debug\UsingIDLDrawWidget.csproj.GenerateResource.Cache
+D:\技术研究\IDL\代码\2011年3月25日IDLDrawWidget\UsingIDLDrawWidget\UsingIDLDrawWidget\obj\Debug\UsingIDLDrawWidget.exe
+D:\技术研究\IDL\代码\2011年3月25日IDLDrawWidget\UsingIDLDrawWidget\UsingIDLDrawWidget\obj\Debug\UsingIDLDrawWidget.pdb

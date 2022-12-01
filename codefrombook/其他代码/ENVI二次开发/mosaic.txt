@@ -1,0 +1,3 @@
+c:\temp\mosaic_1.img
+c:\temp\mosaic_2.img
+c:\temp\mosaic_result.img

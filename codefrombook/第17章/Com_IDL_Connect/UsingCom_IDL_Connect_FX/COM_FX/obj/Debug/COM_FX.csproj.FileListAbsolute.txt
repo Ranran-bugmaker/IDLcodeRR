@@ -1,0 +1,11 @@
+D:\工作ing\IDL教材-出版\交付稿件-2011年10月\光盘内容\第17章\UsingCom_IDL_Connect_FX\COM_FX\obj\Debug\Interop.COM_IDL_connectLib.dll
+D:\工作ing\IDL教材-出版\交付稿件-2011年10月\光盘内容\第17章\UsingCom_IDL_Connect_FX\COM_FX\obj\Debug\COM_FX.csproj.ResolveComReference.cache
+D:\工作ing\IDL教材-出版\交付稿件-2011年10月\光盘内容\第17章\UsingCom_IDL_Connect_FX\COM_FX\obj\Debug\COM_FX.exe
+D:\工作ing\IDL教材-出版\交付稿件-2011年10月\光盘内容\第17章\UsingCom_IDL_Connect_FX\COM_FX\obj\Debug\COM_FX.pdb
+D:\工作ing\IDL教材-出版\交付稿件-2011年10月\光盘内容\第17章\UsingCom_IDL_Connect_FX\COM_FX\bin\Debug\COM_FX.exe
+D:\工作ing\IDL教材-出版\交付稿件-2011年10月\光盘内容\第17章\UsingCom_IDL_Connect_FX\COM_FX\bin\Debug\COM_FX.pdb
+D:\工作ing\IDL教材-出版\交付稿件-2011年10月\光盘内容\第17章\UsingCom_IDL_Connect_FX\COM_FX\bin\Debug\Interop.COM_IDL_connectLib.dll
+D:\工作ing\IDL教材-出版\交付稿件-2011年10月\光盘内容\第17章\UsingCom_IDL_Connect_FX\COM_FX\obj\Debug\ResolveAssemblyReference.cache
+D:\工作ing\IDL教材-出版\交付稿件-2011年10月\光盘内容\第17章\UsingCom_IDL_Connect_FX\COM_FX\obj\Debug\COM_FX.Form1.resources
+D:\工作ing\IDL教材-出版\交付稿件-2011年10月\光盘内容\第17章\UsingCom_IDL_Connect_FX\COM_FX\obj\Debug\COM_FX.Properties.Resources.resources
+D:\工作ing\IDL教材-出版\交付稿件-2011年10月\光盘内容\第17章\UsingCom_IDL_Connect_FX\COM_FX\obj\Debug\COM_FX.csproj.GenerateResource.Cache

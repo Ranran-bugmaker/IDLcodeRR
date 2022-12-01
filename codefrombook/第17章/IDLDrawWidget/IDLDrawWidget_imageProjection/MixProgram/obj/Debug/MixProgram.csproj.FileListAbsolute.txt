@@ -1,0 +1,15 @@
+D:\2011UC\MixProgram\MixProgram\obj\Debug\Interop.IDLDRAWX3Lib.dll
+D:\2011UC\MixProgram\MixProgram\obj\Debug\AxInterop.IDLDRAWX3Lib.dll
+D:\2011UC\MixProgram\MixProgram\obj\Debug\MixProgram.csproj.ResolveComReference.cache
+D:\2011UC\MixProgram\MixProgram\obj\Debug\MixProgram.exe
+D:\2011UC\MixProgram\MixProgram\obj\Debug\MixProgram.pdb
+D:\2011UC\MixProgram\MixProgram\bin\Debug\MixProgram.exe
+D:\2011UC\MixProgram\MixProgram\bin\Debug\MixProgram.pdb
+D:\2011UC\MixProgram\MixProgram\bin\Debug\DevComponents.DotNetBar.Design.dll
+D:\2011UC\MixProgram\MixProgram\bin\Debug\DevComponents.DotNetBar2.dll
+D:\2011UC\MixProgram\MixProgram\bin\Debug\Interop.IDLDRAWX3Lib.dll
+D:\2011UC\MixProgram\MixProgram\bin\Debug\AxInterop.IDLDRAWX3Lib.dll
+D:\2011UC\MixProgram\MixProgram\obj\Debug\ResolveAssemblyReference.cache
+D:\2011UC\MixProgram\MixProgram\obj\Debug\MixProgram.Form1.resources
+D:\2011UC\MixProgram\MixProgram\obj\Debug\MixProgram.Properties.Resources.resources
+D:\2011UC\MixProgram\MixProgram\obj\Debug\MixProgram.csproj.GenerateResource.Cache

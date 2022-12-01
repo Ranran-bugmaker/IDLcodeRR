@@ -1,0 +1,13 @@
+c:\temp\IDLComObjectTest\IDLComObjectTest\obj\Debug\ResolveAssemblyReference.cache
+c:\temp\IDLComObjectTest\IDLComObjectTest\obj\Debug\Interop.helloComExLib.dll
+c:\temp\IDLComObjectTest\IDLComObjectTest\obj\Debug\IDLComObjectTest.csproj.ResolveComReference.cache
+c:\temp\IDLComObjectTest\IDLComObjectTest\obj\Debug\IDLComObjectTest.Form1.resources
+c:\temp\IDLComObjectTest\IDLComObjectTest\obj\Debug\IDLComObjectTest.Properties.Resources.resources
+c:\temp\IDLComObjectTest\IDLComObjectTest\obj\Debug\IDLComObjectTest.csproj.GenerateResource.Cache
+c:\temp\IDLComObjectTest\IDLComObjectTest\bin\Debug\IDLComObjectTest.exe
+c:\temp\IDLComObjectTest\IDLComObjectTest\bin\Debug\IDLComObjectTest.pdb
+c:\temp\IDLComObjectTest\IDLComObjectTest\bin\Debug\Interop.helloComExLib.dll
+c:\temp\IDLComObjectTest\IDLComObjectTest\obj\Debug\IDLComObjectTest.exe
+c:\temp\IDLComObjectTest\IDLComObjectTest\obj\Debug\IDLComObjectTest.pdb
+D:\工作ing\IDL教材-出版\第四篇\第四章\IDLComObjectTest\IDLComObjectTest\obj\Debug\IDLComObjectTest.exe
+D:\工作ing\IDL教材-出版\第四篇\第四章\IDLComObjectTest\IDLComObjectTest\obj\Debug\IDLComObjectTest.pdb

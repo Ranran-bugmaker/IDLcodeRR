@@ -1,0 +1,37 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: imageStretch - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\Users\ADMINI~1\AppData\Local\Temp\2\RSP6F22.tmp" with contents
+[
+/nologo /MTd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "IMAGESTRETCH_EXPORTS" /Fp"Debug/imageStretch.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"D:\工作ing\IDL教材-出版\第四篇\第四章\imageStretch\imageStretch.c"
+"D:\工作ing\IDL教材-出版\第四篇\第四章\imageStretch\imageStretch_ExamplesStartup.c"
+]
+Creating command line "cl.exe @C:\Users\ADMINI~1\AppData\Local\Temp\2\RSP6F22.tmp" 
+Creating temporary file "C:\Users\ADMINI~1\AppData\Local\Temp\2\RSP6F23.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /incremental:yes /pdb:"Debug/imageStretch.pdb" /debug /machine:I386 /def:".\imageStretch.def" /out:"Debug/imageStretch.dll" /implib:"Debug/imageStretch.lib" /pdbtype:sept 
+".\Debug\imageStretch.obj"
+".\Debug\imageStretch_ExamplesStartup.obj"
+".\idl.lib"
+]
+Creating command line "link.exe @C:\Users\ADMINI~1\AppData\Local\Temp\2\RSP6F23.tmp"
+<h3>Output Window</h3>
+Compiling...
+imageStretch.c
+imageStretch_ExamplesStartup.c
+Linking...
+   Creating library Debug/imageStretch.lib and object Debug/imageStretch.exp
+
+
+
+<h3>Results</h3>
+imageStretch.dll - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

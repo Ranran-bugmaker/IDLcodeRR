@@ -1,0 +1,3 @@
+# "section", "find", "replace" value pairs for GDAL projection string returned to IDL
+"PROJCS","_Northern_Hemisphere","N"
+"PROJCS","_Southern_Hemisphere","S"

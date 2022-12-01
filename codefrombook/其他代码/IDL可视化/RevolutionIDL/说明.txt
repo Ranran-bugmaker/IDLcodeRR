@@ -1,0 +1,2 @@
+Eduardo Iturrate编写的基于对象图形法的RevolutionIDL程序，对理解对象图形法中IDL层次体系结构很有帮助。
+下载地址：http://www.exelisvis.com/Default.aspx?tabid=1540&id=1319

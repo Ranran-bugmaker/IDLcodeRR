@@ -1,0 +1,3 @@
+LIBRARY ImageStretch
+DESCRIPTION 'ImageStretch'
+EXPORTS IDL_Load	@1

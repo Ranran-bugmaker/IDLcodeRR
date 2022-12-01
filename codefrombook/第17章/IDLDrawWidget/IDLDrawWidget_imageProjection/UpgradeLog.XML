@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="MixProgram">
+</Property><Property Name="解决方案文件" Value="D:\2011UC\MixProgram\MixProgram.sln">
+</Property><Property Name="用户选项文件" Value="D:\2011UC\MixProgram\MixProgram.suo">
+</Property><Property Name="Date" Value="2011年9月7日">
+</Property><Property Name="Time" Value="14:44">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="MixProgram.sln" Description="文件已成功备份为 D:\2011UC\MixProgram\Backup\MixProgram.sln">
+</Event><Event ErrorLevel="0" Project="" Source="MixProgram.suo" Description="文件已成功备份为 D:\2011UC\MixProgram\Backup\MixProgram.suo">
+</Event><Event ErrorLevel="0" Project="MixProgram" Source="MixProgram\MixProgram.csproj" Description="项目文件已成功备份为 D:\2011UC\MixProgram\Backup\MixProgram\MixProgram.csproj">
+</Event><Event ErrorLevel="0" Project="MixProgram" Source="MixProgram\Form1.cs" Description="文件已成功备份为 D:\2011UC\MixProgram\Backup\MixProgram\Form1.cs">
+</Event><Event ErrorLevel="0" Project="MixProgram" Source="MixProgram\Form1.Designer.cs" Description="文件已成功备份为 D:\2011UC\MixProgram\Backup\MixProgram\Form1.Designer.cs">
+</Event><Event ErrorLevel="0" Project="MixProgram" Source="MixProgram\Program.cs" Description="文件已成功备份为 D:\2011UC\MixProgram\Backup\MixProgram\Program.cs">
+</Event><Event ErrorLevel="0" Project="MixProgram" Source="MixProgram\Properties\AssemblyInfo.cs" Description="文件已成功备份为 D:\2011UC\MixProgram\Backup\MixProgram\Properties\AssemblyInfo.cs">
+</Event><Event ErrorLevel="0" Project="MixProgram" Source="MixProgram\Properties\Resources.Designer.cs" Description="文件已成功备份为 D:\2011UC\MixProgram\Backup\MixProgram\Properties\Resources.Designer.cs">
+</Event><Event ErrorLevel="0" Project="MixProgram" Source="MixProgram\Properties\Settings.Designer.cs" Description="文件已成功备份为 D:\2011UC\MixProgram\Backup\MixProgram\Properties\Settings.Designer.cs">
+</Event><Event ErrorLevel="0" Project="MixProgram" Source="MixProgram\Properties\Settings.settings" Description="文件已成功备份为 D:\2011UC\MixProgram\Backup\MixProgram\Properties\Settings.settings">
+</Event><Event ErrorLevel="0" Project="MixProgram" Source="MixProgram\Resources\Audi.png" Description="文件已成功备份为 D:\2011UC\MixProgram\Backup\MixProgram\Resources\Audi.png">
+</Event><Event ErrorLevel="0" Project="MixProgram" Source="MixProgram\Resources\BMW.png" Description="文件已成功备份为 D:\2011UC\MixProgram\Backup\MixProgram\Resources\BMW.png">
+</Event><Event ErrorLevel="0" Project="MixProgram" Source="MixProgram\Form1.resx" Description="文件已成功备份为 D:\2011UC\MixProgram\Backup\MixProgram\Form1.resx">
+</Event><Event ErrorLevel="0" Project="MixProgram" Source="MixProgram\Properties\Resources.resx" Description="文件已成功备份为 D:\2011UC\MixProgram\Backup\MixProgram\Properties\Resources.resx">
+</Event><Event ErrorLevel="0" Project="MixProgram" Source="MixProgram\MixProgram.csproj" Description="项目已成功转换">
+</Event><Event ErrorLevel="3" Project="MixProgram" Source="MixProgram\MixProgram.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="MixProgram.sln" Description="成功转换解决方案">
+</Event><Event ErrorLevel="3" Project="" Source="MixProgram.sln" Description="Converted">
+</Event><Event ErrorLevel="0" Project="MixProgram" Source="MixProgram\MixProgram.csproj" Description="扫描完成: 项目文件不需要升级。">
+</Event></UpgradeLog>

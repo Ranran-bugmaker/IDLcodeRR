@@ -1,0 +1,11 @@
+C:\temp\ArcGISEngineUsingENVI\ArcGISEngineUsingENVI\bin\Debug\ArcGISEngineUsingENVI.exe
+C:\temp\ArcGISEngineUsingENVI\ArcGISEngineUsingENVI\bin\Debug\ArcGISEngineUsingENVI.pdb
+C:\temp\ArcGISEngineUsingENVI\ArcGISEngineUsingENVI\bin\Debug\Interop.COM_IDL_connectLib.dll
+C:\temp\ArcGISEngineUsingENVI\ArcGISEngineUsingENVI\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\temp\ArcGISEngineUsingENVI\ArcGISEngineUsingENVI\obj\x86\Debug\Interop.COM_IDL_connectLib.dll
+C:\temp\ArcGISEngineUsingENVI\ArcGISEngineUsingENVI\obj\x86\Debug\ArcGISEngineUsingENVI.csproj.ResolveComReference.cache
+C:\temp\ArcGISEngineUsingENVI\ArcGISEngineUsingENVI\obj\x86\Debug\ArcGISEngineUsingENVI.MainForm.resources
+C:\temp\ArcGISEngineUsingENVI\ArcGISEngineUsingENVI\obj\x86\Debug\ArcGISEngineUsingENVI.Properties.Resources.resources
+C:\temp\ArcGISEngineUsingENVI\ArcGISEngineUsingENVI\obj\x86\Debug\ArcGISEngineUsingENVI.csproj.GenerateResource.Cache
+C:\temp\ArcGISEngineUsingENVI\ArcGISEngineUsingENVI\obj\x86\Debug\ArcGISEngineUsingENVI.exe
+C:\temp\ArcGISEngineUsingENVI\ArcGISEngineUsingENVI\obj\x86\Debug\ArcGISEngineUsingENVI.pdb

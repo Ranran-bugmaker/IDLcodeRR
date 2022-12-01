@@ -1,0 +1,29 @@
+ENVI启动   startENVI.pro
+ENVI关闭   endENVI.pro
+
+
+大气校正			cal_quac.pro
+	
+融合
+	cal_sharpen.pro  包含4个算法！
+	;Method : 0-HSV融合
+	;         1-color-normalized融合
+	;         2-Gram-Schmidt融合
+	;         3-主成分分析融合
+镶嵌
+	cal_mosaic.pro	
+裁剪
+	cal_subset.pro
+监督分类+非监督分类
+	Cal_Class.pro 包含8个算法！
+	;Method : 0-平行六面体 
+	;         1-最小距离  
+	;         2-最大似然  
+	;         3-马氏距离  
+	;         4-神经元网络  ENVI_NEURAL_NET_DOIT 
+	;	  5-向量机     ENVI_SVM_DOIT
+	;	  6-IsoData   
+	;	  7-K-Means   
+
+特征提取
+	Cal_Fx.pro

@@ -1,0 +1,60 @@
+For details on the meshing generation routine look in the header of rkmesh_obj.pro
+
+The following is a description of each item on the pull-down menus.
+
+File
+- Only option is exit.
+
+Object Type
+- Triangulated (Random values)
+	A set of random 2 dimensional values are generated and the image is draped over them.
+- Triangulated (Bessel function)
+	A one dimensional set of x,y,z values are meshed together to form a 2D surface.
+- Rectangular (dist(40,40))
+    A single 2D array is meshed. P1 is the x values, P2 are the y values.
+- Polar
+	A single 2D array representing r and theta values is meshed.  Results in a ballerina
+	skirt surface. P3 is the radius of the first row, P4 is the radius of the last one.
+- Cylindrical (w/endcaps)
+	A single 2D array representing the walls of the cylinder is generated.  The endcaps
+	keyword is set so that endcap polygons are generated.
+- Cylindrical (no endcaps)
+	Same as above, but no endcaps. P4 specifies the Z coordinate of the last
+    row of Array1
+- Spherical
+ 	A 36 x 36 2D array is generated with each value representing the distance from the
+ 	center. In this case all values are equal, but that is not a requirement. e.g. It is
+ 	possible to make a "bumpy" sphere.
+- Extrusion (T shape)
+	The 3D points representing the outline of the object to be made are created here.
+	Setting P1=10 makes 10 steps in the extrusion process.
+- Revolution (cone)
+	The 3D points representing the line to be rotated are passed in here. Setting P1=36
+	makes 36 steps in the revolution. P2 is the center of rotation and P3 is the direction
+	of rotation.
+- Ruled (sin/cos)
+	This is perhaps the most difficult of objects to describe.  Array1 is the set of
+	3D points describing the first ruled surface.  Array2 modulates the first array.
+	P1 sets the number of steps.
+
+
+Image Overlay
+- None
+	No image is overlayed.
+- Choose Jpeg image
+	Choose an image to overlay.
+
+Reset
+	Resets the rotation back to the original values
+
+Projection Type
+- Orthogonal
+	Object will be rendered with all rays coming from infinity. That is, no matter
+	how close you zoom in, you can never touch the surface.
+- Perspective
+	Foreshortening will be modeled.  It is possible to move behing the surface in
+	this mode.
+
+Help
+	How you got here.
+

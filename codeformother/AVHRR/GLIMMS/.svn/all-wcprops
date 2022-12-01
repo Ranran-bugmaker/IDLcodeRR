@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/svn/!svn/ver/58/trunk/IDL/AVHRR/GLIMMS
+END
+GIMMS_Tools.prj
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/58/trunk/IDL/AVHRR/GLIMMS/GIMMS_Tools.prj
+END
+GIMMS_TOOLS.pro
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/58/trunk/IDL/AVHRR/GLIMMS/GIMMS_TOOLS.pro
+END
+GIMMS_TOOLS.prc
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/58/trunk/IDL/AVHRR/GLIMMS/GIMMS_TOOLS.prc
+END
+GIMMS_TOOLS_eventcb.pro
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/58/trunk/IDL/AVHRR/GLIMMS/GIMMS_TOOLS_eventcb.pro
+END
+gimms_clip.pro
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/58/trunk/IDL/AVHRR/GLIMMS/gimms_clip.pro
+END

@@ -1,0 +1,17 @@
+D:\工作ing\IDL教材-出版\交付稿件-2011年10月\光盘内容\第17章\UsingIDLDrawWidget-imgProjection\MixProgram\obj\Debug\MixProgram.exe
+D:\工作ing\IDL教材-出版\交付稿件-2011年10月\光盘内容\第17章\UsingIDLDrawWidget-imgProjection\MixProgram\obj\Debug\MixProgram.pdb
+D:\工作ing\IDL教材-出版\交付稿件-2011年10月\光盘内容\第17章\UsingIDLDrawWidget-imgProjection\MixProgram\obj\Debug\ResolveAssemblyReference.cache
+D:\工作ing\IDL教材-出版\交付稿件-2011年10月\光盘内容\第17章\UsingIDLDrawWidget-imgProjection\MixProgram\obj\Debug\Interop.IDLDRAWX3Lib.dll
+D:\工作ing\IDL教材-出版\交付稿件-2011年10月\光盘内容\第17章\UsingIDLDrawWidget-imgProjection\MixProgram\obj\Debug\AxInterop.IDLDRAWX3Lib.dll
+D:\工作ing\IDL教材-出版\交付稿件-2011年10月\光盘内容\第17章\UsingIDLDrawWidget-imgProjection\MixProgram\obj\Debug\imgProjection.csproj.ResolveComReference.cache
+D:\工作ing\IDL教材-出版\交付稿件-2011年10月\光盘内容\第17章\UsingIDLDrawWidget-imgProjection\MixProgram\obj\Debug\MixProgram.Form1.resources
+D:\工作ing\IDL教材-出版\交付稿件-2011年10月\光盘内容\第17章\UsingIDLDrawWidget-imgProjection\MixProgram\obj\Debug\MixProgram.Properties.Resources.resources
+D:\工作ing\IDL教材-出版\交付稿件-2011年10月\光盘内容\第17章\UsingIDLDrawWidget-imgProjection\MixProgram\obj\Debug\imgProjection.csproj.GenerateResource.Cache
+D:\工作ing\IDL教材-出版\交付稿件-2011年10月\光盘内容\第17章\UsingIDLDrawWidget-imgProjection\MixProgram\bin\Debug\MixProgram.exe
+D:\工作ing\IDL教材-出版\交付稿件-2011年10月\光盘内容\第17章\UsingIDLDrawWidget-imgProjection\MixProgram\bin\Debug\MixProgram.pdb
+D:\工作ing\IDL教材-出版\交付稿件-2011年10月\光盘内容\第17章\UsingIDLDrawWidget-imgProjection\MixProgram\bin\Debug\DevComponents.DotNetBar.Design.dll
+D:\工作ing\IDL教材-出版\交付稿件-2011年10月\光盘内容\第17章\UsingIDLDrawWidget-imgProjection\MixProgram\bin\Debug\DevComponents.DotNetBar2.dll
+D:\工作ing\IDL教材-出版\交付稿件-2011年10月\光盘内容\第17章\UsingIDLDrawWidget-imgProjection\MixProgram\bin\Debug\Interop.IDLDRAWX3Lib.dll
+D:\工作ing\IDL教材-出版\交付稿件-2011年10月\光盘内容\第17章\UsingIDLDrawWidget-imgProjection\MixProgram\bin\Debug\AxInterop.IDLDRAWX3Lib.dll
+D:\工作ing\IDL教材-出版\交付稿件-2011年10月\光盘内容\第17章\IDLDrawWidget_imageProjection\MixProgram\obj\Debug\MixProgram.exe
+D:\工作ing\IDL教材-出版\交付稿件-2011年10月\光盘内容\第17章\IDLDrawWidget_imageProjection\MixProgram\obj\Debug\MixProgram.pdb

@@ -1,0 +1,15 @@
+ENVI
+description = {
+  Create New File Result [Tue Jun 12 17:45:54 2007]}
+samples = 964
+lines   = 1381
+bands   = 1
+header offset = 0
+file type = ENVI Standard
+data type = 2
+interleave = bsq
+sensor type = Unknown
+byte order = 0
+wavelength units = Unknown
+band names = {
+ Band Math (fix(b1))}
