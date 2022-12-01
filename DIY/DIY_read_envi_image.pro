@@ -37,13 +37,13 @@
 ; 头文件是否存在判断
 ; Mapinfo支持两个方向的分辨率
 ;-
-PRO DIY_Read_envi_image, infile, img, mapinfo, bandsnum,xs, ys, type, offset
+PRO DIY_read_envi_image, infile, img, mapinfo, bandsnum,xs, ys, type, offset
 
   COMPILE_OPT IDL2
 
   imag = infile
 
-  header = file_dirname(imag)+PATH_SEP()+FILE_BASENAME(imag,'.dat')+'.hdr'
+  header = file_dirname(imag)+PATH_SEP()+FILE_BASENAME(imag,'.img')+'.hdr'
 
   if ~file_test(header) then begin
     d = DIALOG_MESSAGE('头文件不存在:'+header,/ERROR)
