@@ -66,27 +66,27 @@ PRO SENTINEL
 ;  DO_list=file_list[where(pos lt  0 )];and STRMID(FILE_BASENAME(file_list[*],'.dim'),17,4) eq  '2019'
 ;  
 ;  
-;  totaltime1=systime(1)
-;  for im = 0L, N_ELEMENTS(DO_list)-1 do begin
-;    if ~file_test(TEMP,/directory) then file_mkdir,TEMP
-;    if (min(pos) ne  -999) then begin
-;      print,"数据已全部处理"
-;    endif else begin
-;      start_time=systime(1)
-;      SPAWN,"gpt "+Processing+' -Pinput1='+DO_list[im]+' -Poutput='+TEMP+file_basename(DO_list[im],'.zip')+'_NR_Orb_Cal_Spk_TC_dB.dim',res,/HIDE
-;      print,res[-1]
-;      PRINT,file_basename(DO_list[im])+'_NR_Orb_Cal_Spk_TC_dB.dim'+'  已处理，等待内存清理，剩余 '+STRING(N_ELEMENTS(DO_list)-im,'(I02)')+'项 ，共  '+STRING(N_ELEMENTS(DO_list),'(I02)')+'项'
-;      WAIT,10
-;      SPAWN,'taskkill /im X:\Programx699\snap\bin\gpt.exe',/HIDE
-;      SPAWN,'xcopy '+TEMP+' '+DATA_todB+' /s /y',res,/HIDE
-;      print,res[-1]
-;      end_time=systime(1)
-;      print,'内存清理完成，预处理耗时'+string((end_time-start_time)/60,FORMAT='(F0.2)')+'min'
-;    endelse
-;    SPAWN,'rd '+TEMP+' /s /q',/HIDE
-;  endfor
-;  totaltime2=systime(1)
-;  print,'预处理共用时:'+string((totaltime2-totaltime1)/60,FORMAT='(F0.2)')+'min'
+  totaltime1=systime(1)
+  for im = 0L, N_ELEMENTS(DO_list)-1 do begin
+    if ~file_test(TEMP,/directory) then file_mkdir,TEMP
+    if (min(pos) ne  -999) then begin
+      print,"数据已全部处理"
+    endif else begin
+      start_time=systime(1)
+      SPAWN,"gpt "+Processing+' -Pinput1='+DO_list[im]+' -Poutput='+TEMP+file_basename(DO_list[im],'.zip')+'_NR_Orb_Cal_Spk_TC_dB.dim',res,/HIDE
+      print,res[-1]
+      PRINT,file_basename(DO_list[im])+'_NR_Orb_Cal_Spk_TC_dB.dim'+'  已处理，等待内存清理，剩余 '+STRING(N_ELEMENTS(DO_list)-im,'(I02)')+'项 ，共  '+STRING(N_ELEMENTS(DO_list),'(I02)')+'项'
+      WAIT,10
+      SPAWN,'taskkill /im X:\Programx699\snap\bin\gpt.exe',/HIDE
+      SPAWN,'xcopy '+TEMP+' '+DATA_todB+' /s /y',res,/HIDE
+      print,res[-1]
+      end_time=systime(1)
+      print,'内存清理完成，预处理耗时'+string((end_time-start_time)/60,FORMAT='(F0.2)')+'min'
+    endelse
+    SPAWN,'rd '+TEMP+' /s /q',/HIDE
+  endfor
+  totaltime2=systime(1)
+  print,'预处理共用时:'+string((totaltime2-totaltime1)/60,FORMAT='(F0.2)')+'min'
 ;  
 ;  
 ;  
@@ -232,39 +232,39 @@ PRO SENTINEL
 
 
 
-  totaltime1=systime(1)
-  SPAWN,'rd '+TEMP+' /s /q'
-  file_list=file_search(DATA_masked,'*',count = file_n,/test_directory)
-  if (file_n  eq  0) THEN  file_n=1
-  L_xls=file_basename(file_search(xls_path,'*',/test_directory))
-  pos=MAKE_ARRAY(file_n,/INTEGER,VALUE=-999)
-  foreach L, L_xls,i do begin
-    a=where(file_basename(file_list) eq  L)
-    if (a eq  -1) then begin
-    endif else begin
-      pos[a]=1
-    endelse
-  endforeach
-  DO_list=file_list[where(pos lt  0)]
-  PRINT,"统计开始"
-  for im = 0L, N_ELEMENTS(do_list)-1 do begin
-    if (min(pos) ne  -999) then begin
-      PRINT,'已全部处理'
-    endif else begin
-      print,FILE_BASENAME(DO_list[im])+'开始,剩余 '+STRING(N_ELEMENTS(DO_list)-im-1,'(I02)')+'项 ，共  '+STRING(N_ELEMENTS(DO_list),'(I02)')+'项'
-      start_time=systime(1)
-      if ~file_test(TEMP,/directory) then file_mkdir,TEMP
-      SPAWN,python_path+' '+tjpy_path+' '+temp+' '+DO_list[im],res,/HIDE
-      print,res[-1]
-      SPAWN,'xcopy '+TEMP+'*.xls '+xls_path+FILE_BASENAME(DO_list[im])+'\ /s /y',res,err,/HIDE
-      print,res[-1]
-      SPAWN,'rd '+TEMP+' /s /q',/HIDE
-      end_time=systime(1)
-      print,FILE_BASENAME(DO_list[im])+'统计完成耗时'+string((end_time-start_time)/60,FORMAT='(F0.2)')+'min'
-    endelse
-  endfor
-  totaltime2=systime(1)
-  print,'输出共用时:'+string((totaltime2-totaltime1)/60,FORMAT='(F0.2)')+'min'
+;  totaltime1=systime(1)
+;  SPAWN,'rd '+TEMP+' /s /q'
+;  file_list=file_search(DATA_masked,'*',count = file_n,/test_directory)
+;  if (file_n  eq  0) THEN  file_n=1
+;  L_xls=file_basename(file_search(xls_path,'*',/test_directory))
+;  pos=MAKE_ARRAY(file_n,/INTEGER,VALUE=-999)
+;  foreach L, L_xls,i do begin
+;    a=where(file_basename(file_list) eq  L)
+;    if (a eq  -1) then begin
+;    endif else begin
+;      pos[a]=1
+;    endelse
+;  endforeach
+;  DO_list=file_list[where(pos lt  0)]
+;  PRINT,"统计开始"
+;  for im = 0L, N_ELEMENTS(do_list)-1 do begin
+;    if (min(pos) ne  -999) then begin
+;      PRINT,'已全部处理'
+;    endif else begin
+;      print,FILE_BASENAME(DO_list[im])+'开始,剩余 '+STRING(N_ELEMENTS(DO_list)-im-1,'(I02)')+'项 ，共  '+STRING(N_ELEMENTS(DO_list),'(I02)')+'项'
+;      start_time=systime(1)
+;      if ~file_test(TEMP,/directory) then file_mkdir,TEMP
+;      SPAWN,python_path+' '+tjpy_path+' '+temp+' '+DO_list[im],res,/HIDE
+;      print,res[-1]
+;      SPAWN,'xcopy '+TEMP+'*.xls '+xls_path+FILE_BASENAME(DO_list[im])+'\ /s /y',res,err,/HIDE
+;      print,res[-1]
+;      SPAWN,'rd '+TEMP+' /s /q',/HIDE
+;      end_time=systime(1)
+;      print,FILE_BASENAME(DO_list[im])+'统计完成耗时'+string((end_time-start_time)/60,FORMAT='(F0.2)')+'min'
+;    endelse
+;  endfor
+;  totaltime2=systime(1)
+;  print,'输出共用时:'+string((totaltime2-totaltime1)/60,FORMAT='(F0.2)')+'min'
   
   
 ;  totaltime1=systime(1)

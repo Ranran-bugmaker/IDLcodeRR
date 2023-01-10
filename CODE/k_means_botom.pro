@@ -41,4 +41,6 @@ pro k_means_botom
     endfor
   endfor
   write_tiff,output,classarry,geotiff=geo_info,/L64
+  SPAWN,"explorer "+FILE_DIRNAME(output),res,/HIDE
+  print,'-------end-------'
 end
