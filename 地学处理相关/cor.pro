@@ -50,10 +50,10 @@ pro cor
   x=gr_res.toarray()
   y=sr_res.toarray()
   n=N_ELEMENTS(x)
-  r=CORRELATE(x,y)
+  r=CORRELATE(x,y);协方差
   myplot=SCATTERPLOT(x,y,XRANGE=[0,1],YRANGE=[0,1],SYMBOL=23,SYM_SIZE=2$
     ,SYM_FILL_COLOR='CORAL',SYM_FILLED=1,TITLE='biubiubibu',$
-    xtitle='AERONET AOD(550nm)',ytitle='Satellite AOD(550nm)',DIMENSIONS=[800,800],$
+    xtitle='AERONET AOD(550nm)',ytitle='Satellite AOD中文(550nm)',DIMENSIONS=[800,800],$
     name='point'+STRTRIM(STRING(N_ELEMENTS(x)),2)+',R='+STRING(r,FORMAT='(f0.3)'))
   fit=LINFIT(x,y)
   fitx=[0,1]
