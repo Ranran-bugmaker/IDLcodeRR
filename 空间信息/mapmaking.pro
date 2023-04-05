@@ -14,7 +14,6 @@ pro mapmaking
     a=READ_TIFF(file_list[i],GEOTIFF=geo1)
     a[WHERE(a eq  -3.4028235e+038)]=!VALUES.F_NAN
     dz=SIZE(a)
-;    geokeys=[geo1.MODELTIEPOINTTAG[4],geo1.MODELTIEPOINTTAG[3],dz[1]*geo1.MODELPIXELSCALETAG[0] + geo1.MODELTIEPOINTTAG[3],geo1.MODELTIEPOINTTAG[4]-dz[2]*geo1.MODELPIXELSCALETAG[1]]
     geokeys={$
     w:geo1.MODELTIEPOINTTAG[4],$
     a:geo1.MODELTIEPOINTTAG[3],$
@@ -44,11 +43,6 @@ pro mapmaking
     img=image(ROTATE(a,7),rgb_table=color_table,TITLE=titles,IMAGE_LOCATION=[geokeys.a,geokeys.s],$
       POSITION=[0.1,0.15,0.9,0.95],DIMENSIONS=[800,650],$
       image_dimensions=[ (geokeys.d-geokeys.a) , (geokeys.w-geokeys.s)],/overplot)
-      
-;    xaxis=axis(0,LOCATION=[geokeys.a,geokeys.s],axis_range=[0 , 500],coord_transform=[-geokeys.a*107.8242314,107.8242314],TICKDIR=1,TITLE='(km)')
-;    img.mapgrid.CLIP=1
-    
-;    ,MINOR=0, MAJOR=3
     imgmi=MAP('Geographic',LIMIT=[geokeys.s-1,geokeys.a-1,geokeys.w+1,geokeys.d+1],$
       /BOX_AXES,/overplot)
     migrid=imgmi.MAPGRID
@@ -60,56 +54,8 @@ pro mapmaking
     migrid.GRID_LONGITUDE=2
     migrid['Latitudes'].LABEL_ANGLE = 90
     migrid['Longitudes'].LABEL_ANGLE = 0
-;    mapgrid.CLIP=1
-;    img=image(ROTATE(a,7),rgb_table=color_table,grid_units=2,$
-;      $;max(lon)-min(lon)   max(lat)-min(lat)image_dimensions=[ (geokeys[2]-geokeys[1])*1.2 , (geokeys[0]-geokeys[3])*1.2 ],
-;      LONGITUDE_MIN=geokeys[1],LONGITUDE_MAX=geokeys[2],$;min(lon),min(lat)IMAGE_LOCATION=[geokeys[1],geokeys[3]],
-;      GEOTIFF=geo1,$;YRANGE=[geokeys[1]-2 , geokeys[2]+2 ],
-;      POSITION=[0.1,0.15,0.9,0.95],DIMENSIONS=[800,800],/overplot)
-;      img.mapgrid.CLIP=1
-
-    
-;    marsDiameter = 6792 ; km
-;
-;    scaleFactor = marsDiameter/400 ; km/pixel
-;
-;    ax1 = AXIS('x', LOCATION=70, $
-;      TITLE='(km)', $
-;      /DATA, $
-;      AXIS_RANGE=[0, 600], $
-;      COORD_TRANSFORM=[-195, 1] * scaleFactor, $
-;      MINOR=0, MAJOR=3)
-        
-;    img.MAPGRID = MAPGRID(COLOR="red", $
-;       FILL_COLOR="yellow", TRANSPARENCY=100, $
-;       LONGITUDE_MIN=geokeys[1], LONGITUDE_MAX=geokeys[2], $
-;       LATITUDE_MIN=geokeys[3], LATITUDE_MAX=geokeys[0], $
-;       GRID_LONGITUDE=2, GRID_LATITUDE=2, $
-;       LABEL_SHOW=0)
-;;      limit=[geokeys[1]*1.2,geokeys[2]*0.8,geokeys[0]*1.2,geokeys[3]*0.8],
-
-
-;  img.MAPGRID.LONGITUDE_MIN=geokeys[1]-5
-;  img.MAPGRID.GRID_LONGITUDE=1
-    ;set colormap limits
     img.MAX_VALUE=range[1]
     img.MIN_VALUE=range[0]
-;    ;Change the figure title, grid type, axis text direction, and color bar form
-;;    img.title = 'Date:'+strmid(file_basename(filearr),16,8)
-;    
-;;    img=MAPGRID(HIDE=0)
-;    img.mapgrid.label_position=0
-;;    img.mapgrid.font_name='Palatino'
-;
-;    img.mapgrid.linestyle=6
-;    img.MAPGRID.BOX_COLOR = 'k'
-;    img.MAPGRID.BOX_ANTIALIAS=0
-;    
-;    
-;    img.mapgrid.horizon_thick=0
-;
-;    img['Latitudes'].LABEL_ANGLE = 90
-;    img['Longitudes'].LABEL_ANGLE = 0
     
 
     ; add colorbar
@@ -123,20 +69,6 @@ pro mapmaking
     ;save plot in jpg format with resolution
     Img.save,outpath+titles+'.png',/BORDER
     img.Close
-    ; save as GeoTIFF
-;    ;Write geographic information structure
-;    geo_info={$
-;      MODELPIXELSCALETAG:[0.01,0.01,0.0],$
-;      MODELTIEPOINTTAG:[0.0,0.0,0.0,min(lon),max(lat),0.0],$
-;      GTMODELTYPEGEOKEY:2,$
-;      GTRASTERTYPEGEOKEY:1,$
-;      GEOGRAPHICTYPEGEOKEY:4326,$
-;      GEOGCITATIONGEOKEY:'GCS_WGS_1984'}
-;
-;    ;write GeoTIFF
-;    WRITE_TIFF,outpath+'SCHAP.AOD.D001.A'+strmid(file_basename(filearr),16,8)+'.tif',reverse(transpose(output_AOD),2),/float, geotiff=geo_info
-;    ;Close nc file ID
-;    NCDF_CLOSE, file_ID
   endfor
   TA[WHERE(TA ne  -3.4028235e+038)]=TA[WHERE(TA ne  -3.4028235e+038)]/5
   img=image(ROTATE(TA,7),rgb_table=color_table,TITLE="平均IDW插值结果",IMAGE_LOCATION=[geokeys.a,geokeys.s],$

@@ -1,7 +1,8 @@
 pro point
-  ; 打开ENVI
-  e = envi(/current)
-;  e = envi(/HEADLESS)
+;  初始化envi
+  compile_opt idl2
+  envi,/restore_base_save_files
+  envi_batch_init
 
   for ishp = 0L, 4 do begin
     
@@ -37,17 +38,12 @@ pro point
     for index = 0L, N_ELEMENTS(enumlist)-1 do begin
       Lat=enumlist[index].(2);站点纬度
       Lon=enumlist[index].(1);站点经度
-;      map_info=ENVI_GET_MAP_INFO(FID=fid)
-;      i_proj=ENVI_PROJ_CREATE(/geographic,datum='WGS-84')
-;      o_proj=map_info.proj
       envi_convert_projection_coordinates,lon,lat,geo_proj,xmap,ymap,image_proj
       ;将站点的地图坐标转换为文件坐标
       envi_convert_file_coordinates,fid,xf,yf,xmap,ymap
       sample = FIX(ABS((xmap- ULlon)/Xsize));abs is determin the positive value, fix is get integer number
       line = FIX(ABS((ymap - ULlat)/Ysize))
-;      xf=floor(xf) & yf=floor(yf)
-;      ;循环读取各个站点高程
-;      dims1=[-1, xf, xf, yf, yf]  ;构建空间范围数组DIMS
+
       DN_data= ENVI_GET_DATA(fid = fid,dims = dims,pos = 0)
       value=DN_data[sample,line]
       if (value ge  0) then begin
@@ -55,7 +51,6 @@ pro point
       ENDIF
     endfor
     close, 1
-
     
     ; 打开栅格.tif
     raster_file = "R:\JX\kjxxx\实验五 气温空间插值方法比较分析\out\outtif\Kriging_shp"+STRCOMPRESS(STRING(ishp+1), /REMOVE_ALL)+'.tif'
@@ -63,26 +58,7 @@ pro point
     ; 创建输出txt文件
     output_file = "R:\JX\kjxxx\实验五 气温空间插值方法比较分析\out\outcsv\Kriging_shp"+STRCOMPRESS(STRING(ishp+1), /REMOVE_ALL)+'.csv'
     openw, 1, output_file
-    
-;    printf,1,"lon,lat,value,or"
-;    for index = 0L, N_ELEMENTS(enumlist)-1 do begin
-;      Lat=enumlist[index].(2);站点纬度
-;      Lon=enumlist[index].(1);站点经度
-;      ENVI_OPEN_FILE,raster_file,r_fid=fid
-;      map_info=ENVI_GET_MAP_INFO(FID=fid)
-;      i_proj=ENVI_PROJ_CREATE(/geographic,datum='WGS-84')
-;      o_proj=map_info.proj
-;      envi_convert_projection_coordinates,lon,lat,i_proj,xmap,ymap,o_proj
-;      ;将站点的地图坐标转换为文件坐标
-;      envi_convert_file_coordinates,fid,xf,yf,xmap,ymap
-;      xf=floor(xf) & yf=floor(yf)
-;      ;循环读取各个站点高程
-;      dims1=[-1, xf, xf, yf, yf]  ;构建空间范围数组DIMS
-;      value=envi_get_data(fid=fid,dims=dims1,pos=0)
-;      printf, 1, format='(i3,F10.4, F10.4, F10.4, F10.4)',STRCOMPRESS(STRING(enumlist[index].(0)), /REMOVE_ALL), STRCOMPRESS(STRING(lon), /REMOVE_ALL)$
-;      , STRCOMPRESS(STRING(lat), /REMOVE_ALL), STRCOMPRESS(STRING(value), /REMOVE_ALL),STRCOMPRESS(STRING(enumlist[index].(3)), /REMOVE_ALL)
-;    endfor
-;    close, 1
+
     printf,1,"fid,lon,lat,value,or"
     ENVI_OPEN_FILE,raster_file,r_fid=fid
     ENVI_FILE_QUERY, fid, dims=dims;some parameters will be used to get data
@@ -101,17 +77,11 @@ pro point
     for index = 0L, N_ELEMENTS(enumlist)-1 do begin
       Lat=enumlist[index].(2);站点纬度
       Lon=enumlist[index].(1);站点经度
-      ;      map_info=ENVI_GET_MAP_INFO(FID=fid)
-      ;      i_proj=ENVI_PROJ_CREATE(/geographic,datum='WGS-84')
-      ;      o_proj=map_info.proj
       envi_convert_projection_coordinates,lon,lat,geo_proj,xmap,ymap,image_proj
       ;将站点的地图坐标转换为文件坐标
       envi_convert_file_coordinates,fid,xf,yf,xmap,ymap
       sample = FIX(ABS((xmap- ULlon)/Xsize));abs is determin the positive value, fix is get integer number
       line = FIX(ABS((ymap - ULlat)/Ysize))
-      ;      xf=floor(xf) & yf=floor(yf)
-      ;      ;循环读取各个站点高程
-      ;      dims1=[-1, xf, xf, yf, yf]  ;构建空间范围数组DIMS
       DN_data= ENVI_GET_DATA(fid = fid,dims = dims,pos = 0)
       value=DN_data[sample,line]
       if (value ge  10e-10) then begin
