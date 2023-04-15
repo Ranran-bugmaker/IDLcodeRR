@@ -125,4 +125,33 @@ pro mapmaking
   Img.save,outpath+"平均O-Kriging插值结果"+'.png',/BORDER
   img.Close
   
+  
+  TC=TA-TB
+  img=image(ROTATE(TC,7),rgb_table=color_table,TITLE="俩种插值结果差值空间分布",IMAGE_LOCATION=[geokeys.a,geokeys.s],$
+    POSITION=[0.1,0.15,0.9,0.95],DIMENSIONS=[800,650],$
+    image_dimensions=[ (geokeys.d-geokeys.a) , (geokeys.w-geokeys.s)],/overplot)
+  imgmi=MAP('Geographic',LIMIT=[geokeys.s-1,geokeys.a-1,geokeys.w+1,geokeys.d+1],$
+    /BOX_AXES,/overplot)
+  migrid=imgmi.MAPGRID
+  migrid.linestyle=6
+  migrid.GRID_LONGITUDE=10
+  migrid.label_position=0
+  migrid.BOX_AXES = 1
+  migrid.GRID_LATITUDE=2
+  migrid.GRID_LONGITUDE=2
+  migrid['Latitudes'].LABEL_ANGLE = 90
+  migrid['Longitudes'].LABEL_ANGLE = 0
+  print,max(TA,/NAN),min(TA,/NAN)
+  img.MAX_VALUE=3
+  img.MIN_VALUE=-3
+  c = COLORBAR(TARGET=img, ORIENTATION=0,TITLE='气温/℃',POSITION=[0.12,0.08,0.88,0.12],font_name = 'Microsoft Yahei');
+  c.RANGE=[-3,3]
+  c.BORDER=0
+  c.TICKDIR= 1
+  c.TEXTPOS = 0
+  c.MAJOR=11
+  c.TAPER=1
+  Img.save,outpath+"俩种插值结果差值空间分布"+'.png',/BORDER
+  img.Close
+  
 end

@@ -3,17 +3,36 @@
  ;@Author 冉炯涛
  ;@Description //TODO 通过envi的glt来进行重投影,经纬度,pixelSize有最低线，使劲往小里写，tmppath临时文件夹，输出别往里放，
  ;@Date 2023-4-4 下午9:50:52
- ;@Param data,londata,latdata,outputname,tmppath,pixel_size=pixelSize
+ ;@Param 
  ;@return
  ;
  ;-
 
+ ;+
+ ;
+ ;@Author 冉炯涛
+ ;	:Description:
+ ;		 //TODO TODOlist
+ ;	:Date 2023年4月13日 下午8:40:54
+ ;	:Params:
+ ;  data,londata,latdata,outputname,tmppath,pixel_size=pixelSize
+ ;	:keywords:
+ ;
+ ;	:return:
+ ;
+ ;-
+
+
 pro DIY_GLT_warp,data,londata,latdata,outputname,tmppath,pixel_size=pixelSize
+  compile_opt idl2
+  envi,/restore_base_save_files
+  envi_batch_init
+  
   if ~file_test(tmppath,/directory) then file_mkdir,tmppath
   sz=size(data)
-  WRITE_TIFF, tmppath+"lon.tif", REFORM(londata,2,sz[-1]/2.0), /float
-  WRITE_TIFF, tmppath+"lat.tif", REFORM(latdata,2,sz[-1]/2.0), /float
-  WRITE_TIFF, tmppath+"tmp.tif", REFORM(data,2,sz[-1]/2.0), /float
+  WRITE_TIFF, tmppath+"lon.tif", londata, /float
+  WRITE_TIFF, tmppath+"lat.tif", latdata, /float
+  WRITE_TIFF, tmppath+"tmp.tif", data, /float
   
   in_prj = ENVI_PROJ_CREATE(/GEOGRAPHIC)
   out_prj = ENVI_PROJ_CREATE(/GEOGRAPHIC)
@@ -28,8 +47,14 @@ pro DIY_GLT_warp,data,londata,latdata,outputname,tmppath,pixel_size=pixelSize
     x_fid=lon_id, y_fid=lat_id, x_pos=0, y_pos=0, r_fid=glt_id
   print,pixelSize
   ENVI_DOIT, 'ENVI_GEOREF_FROM_GLT_DOIT', fid=ds_id, glt_fid=glt_id, $
-    pos=0, out_name=outputname
-
+    pos=0, out_name=outputname;tmppath+'tmp.dat'
+  
+;  envi_open_file,tmppath+'tmp.dat',r_fid = ifid
+;  envi_file_query,ifid ,dims = dims,nb = nb
+;  ENVI_OUTPUT_TO_EXTERNAL_FORMAT, $
+;    dims = dims,pos = lindgen(nb),out_name = outputname,/tiff,fid = ifid
+;  envi_file_mng,id = ifid,/remove,/delete
+  
   envi_file_mng, id=lon_id, /REMOVE
   envi_file_mng, id=lat_id, /REMOVE
   envi_file_mng, id=ds_id, /REMOVE

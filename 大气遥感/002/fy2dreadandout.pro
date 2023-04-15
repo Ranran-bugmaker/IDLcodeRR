@@ -44,8 +44,8 @@ pro FY2Dreadandout
   for n = 1L, N_ELEMENTS(CAL2data)-1 do tmp[where(IR2data eq n)]=CAL2data[n]
   
   data_col=size(IR2data)
-  pos=where((lon ge 73) and (lon le 136) and (lat ge 13) and (lat le 54),count)
+  pos=where((lon ge 73) and (lon le 136) and (lat ge 3) and (lat le 54),count)
   
-  DIY_GLT_warp,tmp[pos],lon[pos],lat[pos],"R:\JX\dqyg\sy2\tmp.tif",tmppath,PIXEL_SIZE=0.02
+  DIY_GLT_warp,tmp[pos],lon[pos],lat[pos],"R:\JX\dqyg\sy2\out.tif",tmppath,PIXEL_SIZE=0.2
   ENVI_BATCH_EXIT
 END

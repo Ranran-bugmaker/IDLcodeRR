@@ -1,4 +1,5 @@
 archive.zip
-IDL 8.5.lnk
+*.lnk
 *.H5
 *.hdf
+/.metadata/

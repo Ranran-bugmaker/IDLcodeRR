@@ -1,3 +1,24 @@
+;+
+;
+;	:Author:	冉炯涛
+;	
+;	:Description:
+;		 //TODO 搜索MTL文件数据
+;
+;	:Date 2023年4月14日 上午12:04:46
+;	
+;	:Params:
+;   txt:  文本，需先外部打开
+;   
+;	:keywords:
+;	  name: 待搜索组名
+;   idcode: 搜索组属性
+;   key: 模式选择，默认0即不分割=
+;  除非搜索属性在文本中含有多个位置，否则只需要搜索属性
+;  
+;	:return:
+;   name_list : 返回数据
+;-
 PRO DIY_Attributes_txt,txt,name_list,name=name,idcode=idstr,key=key
   ;  txt  文本，需先外部打开
   ;  name  待搜索组名

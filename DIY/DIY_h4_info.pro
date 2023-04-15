@@ -1,3 +1,18 @@
+;+
+;
+;@Author 冉炯涛
+;	:Description:
+;		 //TODO 获取栅格数据
+;	:Date 2023-4-9 下午10:32:54
+;	:Params:
+;   file_name : 文件，包含路径
+;   name : 搜索文件名，搜索info
+;	:keywords:
+;
+;	:return:
+;
+;-
+
 FUNCTION DIY_h4_info,file_name,name,key=identify
 ;  获取栅格数据
 ;  file_name  文件，包含路径
