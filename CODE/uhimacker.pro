@@ -262,14 +262,14 @@ pro UHImacker
     suf[where(ndvi_data eq raster_9.METADATA["DATA IGNORE VALUE"])]=!VALUES.F_NAN
     ndvi_data[where(ndvi_data eq raster_9.METADATA["DATA IGNORE VALUE"])]=!VALUES.F_NAN
     tmpmetadata=raster_9.METADATA
-    raster_9.close
+    
     
     pv[where(ndvi_data gt 0.7)]=1
     pv[where(ndvi_data lt 0.05)]=0
     pv[where(ndvi_data ge 0.05 and ndvi_data le 0.7)]= (ndvi_data[where(ndvi_data ge 0.05 and ndvi_data le 0.7)]-0.05)/(0.7-0.05)
-    suf[where(ndvi_data gt 0.1)]=0.9625+0.0614*pv[where(ndvi_data gt 0.1)]-0.0461*pv[where(ndvi_data gt 0.1)]^2
+    suf[where(ndvi_data gt 0.1)]=0.986;0.9625+0.0614*pv[where(ndvi_data gt 0.1)]-0.0461*pv[where(ndvi_data gt 0.1)]^2
     suf[where(ndvi_data le 0.1 and mndwi_data gt 0.1)]=0.995
-    suf[where(ndvi_data le 0.1 and mndwi_data le 0.1)]=0.9589+0.086*pv[where(ndvi_data le 0.1 and mndwi_data le 0.1)]-0.0671*pv[where(ndvi_data le 0.1 and mndwi_data le 0.1)]^2
+    suf[where(ndvi_data le 0.1 and mndwi_data le 0.1)]=0.970;0.9589+0.086*pv[where(ndvi_data le 0.1 and mndwi_data le 0.1)]-0.0671*pv[where(ndvi_data le 0.1 and mndwi_data le 0.1)]^2
     print,"地表比辐射率计算"
     tmpmetadata.UpdateItem,"BAND NAMES","Surface Reflectance"
     tmpmetadata.UpdateItem,"DESCRIPTION","地表比辐射率计算结果"
@@ -301,13 +301,13 @@ pro UHImacker
     ;
     ;
     print,"计算地表温度"
-    brightness_temperature=(band10_k2)/alog(band10_k1/b1+1)-273
+    brightness_temperature=(band10_k2)/alog(band10_k1/Blackbody_Radiation+1)-273
     tmpmetadata.UpdateItem,"BAND NAMES","brightness_temperature"
     tmpmetadata.UpdateItem,"DESCRIPTION","单位为摄氏度的地表温度"
     Raster = ENVIRaster(brightness_temperature, URI=tmp_path+DATA_date+"_BT_OR.dat",SPATIALREF=Projection_Ref,METADATA=tmpmetadata)
     Raster.Save
     Raster.Close
-    
+    raster_9.close
     
     ; ----------------------------------------------------
     ; 根据 ROI 创建裁剪范围数组 - Create Subrects from ROI
@@ -330,6 +330,7 @@ pro UHImacker
     task_1.output_raster_uri = tmp_path+DATA_date+"_BT_subset.dat"
     task_1.Execute
     rasterin.close
+    
 ;    if file_test(tmp_path,/directory) then file_delete,tmp_path,/RECURSIVE
   endfor
   VECTOR_subset.close
