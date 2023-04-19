@@ -442,7 +442,8 @@ pro UHImacker
   
   for index = 0L, N_ELEMENTS(mosaiced)-1 do begin
     data=READ_TIFF(mosaiced[index],GEOTIFF=mapinfo)
-    datanew=(data*1.0-MEAN(data))/MEAN(data)
+    meand=MEAN(data)
+    datanew=(data*1.0-meand)/meand
     WRITE_TIFF,out_path+FILE_BASENAME(mosaiced[index],'_Mosaiced.tif')+"_UHI.tif",datanew,GEOTIFF=mapinfo,/FLOAT
   endfor
   DataColl = E.Data
