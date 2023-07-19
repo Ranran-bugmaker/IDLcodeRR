@@ -23,6 +23,7 @@ pro UHImacker
   tmp_path="R:\JX\kjxxx\suibian xie de mingzi\tmp\"
   data_path='R:\JX\kjxxx\suibian xie de mingzi\'
   shp_path='R:\JX\cdutm48minout.shp'
+  shp1_path='R:\JX\cdutm48.shp'
   ; 1:覆写  0:不覆写
   overwrite=0
   ; 1:中间文件删除  0:不删除
@@ -83,6 +84,9 @@ pro UHImacker
     jsonname=FILE_DIRNAME(MTL_txt_file[imtl])+'\'+FILE_BASENAME(MTL_txt_file[imtl],'.txt')+".json"
     if (~file_test(jsonname)) then begin
       jsonname=FILE_DIRNAME(MTL_txt_file[imtl])+'\'+FILE_BASENAME(MTL_txt_file[imtl],'.txt')+".xml"
+      if (~file_test(jsonname)) then BEGIN
+        print,"数据读取错误，请下载原始数据"
+      endif
       tmp= XML_PARSE(jsonname)
       tmp1=JSON_SERIALIZE(tmp)
       json_struct=JSON_Parse(tmp1,/TOARRAY)
@@ -415,36 +419,61 @@ pro UHImacker
       str_month=[str_month,str_tmp[1]]
     endfor
     PRINT,N_ELEMENTS(json_struct.(ij)),STRJOIN(str_month,'-')
-    if file_test(out_path+STRJOIN(str_month,'-')+"_Mosaiced.dat") then file_delete,out_path+STRJOIN(str_month,'-')+"_Mosaiced.dat"
-    task_1 = ENVITask('BuildMosaicRaster')
-    task_1.input_rasters =tmp
-    task_1.color_matching_method = 'Histogram Matching'
-    task_1.color_matching_statistics = 'Overlapping Area'
-    task_1.feathering_method = 'None'
-    task_1.seamline_method = 'Geometry'
-    task_1.output_raster_uri = out_path+STRJOIN(str_month,'-')+"_Mosaiced.dat"
-    task_1.Execute
-    Mosaiced_R=ENVI.OpenRaster(out_path+STRJOIN(str_month,'-')+"_Mosaiced.dat")
-    if file_test(out_path+STRJOIN(str_month,'-')+"_Mosaiced.tif") then file_delete,out_path+STRJOIN(str_month,'-')+"_Mosaiced.tif"
-    task_2 = ENVITask('ExportRasterToTIFF')
-    task_2.input_raster=Mosaiced_R
-    task_2.INTERLEAVE='BIP'
-    task_2.DATA_IGNORE_VALUE=-9999.0
-    task_2.output_raster_uri=out_path+STRJOIN(str_month,'-')+"_Mosaiced.tif"
-    task_2.Execute
-    Mosaiced_R.close
+;    if file_test(out_path+STRJOIN(str_month,'-')+"_Mosaiced.dat") then file_delete,out_path+STRJOIN(str_month,'-')+"_Mosaiced.dat"
+;    
+;    task_1 = ENVITask('BuildMosaicRaster')
+;    task_1.input_rasters =tmp
+;    task_1.color_matching_method = 'Histogram Matching'
+;    task_1.color_matching_statistics = 'Overlapping Area'
+;    task_1.feathering_method = 'None'
+;    task_1.seamline_method = 'Geometry'
+;    task_1.output_raster_uri = out_path+STRJOIN(str_month,'-')+"_Mosaiced.dat"
+;    task_1.Execute
+;    
+;    Mosaiced_R=ENVI.OpenRaster(out_path+STRJOIN(str_month,'-')+"_Mosaiced.dat")
+;    if file_test(out_path+STRJOIN(str_month,'-')+"_Mosaiced.tif") then file_delete,out_path+STRJOIN(str_month,'-')+"_Mosaiced.tif"
+;    task_2 = ENVITask('ExportRasterToTIFF')
+;    task_2.input_raster=Mosaiced_R
+;;    task_2.INTERLEAVE='BIP'
+;    task_2.DATA_IGNORE_VALUE=-9999.0
+;    task_2.output_raster_uri=out_path+STRJOIN(str_month,'-')+"_Mosaiced.tif"
+;    task_2.Execute
+;    Mosaiced_R.close
     mosaiced.Add,out_path+STRJOIN(str_month,'-')+"_Mosaiced.tif"
     end_time1=systime(1)
+
     PRINT,"单幅镶嵌运行完成，耗时"+strcompress(string((end_time1-start_time1)/60))+"min"
   endfor 
   end_time=systime(1)
   PRINT,"总镶嵌运行完成，耗时"+strcompress(string((end_time-start_time)/60))+"min"
-  
+
+;  VECTORcm=ENVI.OpenVector(shp1_path)
   for index = 0L, N_ELEMENTS(mosaiced)-1 do begin
+    ; ------------------------------------------------------
+    ; 根据矢量创建裁剪范围数组 - Create Subrects from Vector
+;    ; ------------------------------------------------------
+;    rasterin=ENVI.OpenRaster(mosaiced[index])
+;    task_1 = ENVITask('CreateSubrectsFromVector')
+;    task_1.input_vector =VECTORcm
+;    task_1.input_raster =rasterin
+;    task_1.Execute
+;    ; ----------------------------------------------
+;    ; 通过裁剪范围切割栅格 - Dice Raster by Subrects
+;    ; ----------------------------------------------
+;    task_2 = ENVITask('DiceRasterBySubrects')
+;;    a=ENVI.CreateRaster(DATA_IGNORE_VALUE=-9999.0,url=mosaiced[index]+".dat")
+;    task_2.input_raster=rasterin
+;    task_2.subrect_array = task_1.subrects
+;    task_2.subrect_names = task_1.subrect_names
+;;    task_2.OUTPUT_RASTER = 
+;    task_2.Execute
+    ;    task_2.ParameterNames()
     data=READ_TIFF(mosaiced[index],GEOTIFF=mapinfo)
-    meand=MEAN(data)
+    data[where(data eq -9999.0)]=!VALUES.F_NAN
+    meand=MEAN(data,/NAN)
     datanew=(data*1.0-meand)/meand
     WRITE_TIFF,out_path+FILE_BASENAME(mosaiced[index],'_Mosaiced.tif')+"_UHI.tif",datanew,GEOTIFF=mapinfo,/FLOAT
+;    rasterin.close
   endfor
   DataColl = E.Data
   Rasters = DataColl.Get(/RASTER)
