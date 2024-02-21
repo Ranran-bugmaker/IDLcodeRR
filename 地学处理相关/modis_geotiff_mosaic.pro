@@ -62,7 +62,7 @@ pro modis_geotiff_mosaic
     return
   endif
   if ~file_test(output_directory,/directory) then file_mkdir,output_directory
-  
+
   file_list=file_search(input_directory,'*.tiff',count=file_n)
   file_doy=strmid(file_basename(file_list),9,8)
   file_doy_uniq=file_doy.uniq()
@@ -70,12 +70,12 @@ pro modis_geotiff_mosaic
   for doy_i=0,doy_n-1 do begin
     file_list_temp=file_search(input_directory,'*'+file_doy_uniq[doy_i]+'*.tiff',count=file_n)
     geotiff_file_average,file_list_temp,mosaic_data,mosaic_geoinfo
-    
+
     current_year=fix(strmid(file_doy_uniq[doy_i],1,4))
     current_doy=fix(strmid(file_doy_uniq[doy_i],5,3))
     date_julian=imsl_datetodays(31,12,current_year-1)+current_doy
     imsl_daystodate,date_julian,out_day,out_month,out_year
     out_name=string(out_year,format='(I04)')+string(out_month,format='(I02)')+string(out_day,format='(I02)')+'_mosaic.tiff'
-    write_tiff,output_directory+out_name,mosaic_data,/float,geotiff=mosaic_geoinfo   
+    write_tiff,output_directory+out_name,mosaic_data,/float,geotiff=mosaic_geoinfo
   endfor
 end
